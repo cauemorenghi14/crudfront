@@ -29,14 +29,15 @@ const getUsuarioById = async (
 };
 
 const createUsuario = async (
-  dados: Omit<ICadastroUsuarioProps, "id">
+  dados: Omit<ICadastroUsuarioProps, "id">,
+  token: string | null
 ): Promise<ICadastroUsuarioProps | undefined> => {
 
   try {
     const { data } = await api.post<ICadastroUsuarioProps>("/users", {
       ...dados,
       status: 1,
-    });
+    }, { headers: { Authorization: `Bearer ${token}` } });
 
     if (data) {
       return data;

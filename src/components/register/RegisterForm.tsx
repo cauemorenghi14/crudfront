@@ -13,7 +13,7 @@ export const RegisterForm = () => {
   const { token, user } = useAuth()
 
   const registerFunction = async (data: ICadastroUsuarioProps) => {
-    const res = await createUsuario(data)
+    const res = await createUsuario(data, token)
     console.log(res)
     await editAcaoUsusario(token, {
       feito_por: user?.id,
